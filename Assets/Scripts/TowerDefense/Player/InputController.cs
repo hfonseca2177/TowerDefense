@@ -9,16 +9,11 @@ namespace TowerDefense.Player
     public class InputController : BaseInputController
     {
 
-        public void OnPointer()
+        public void OnSelect()
         {
-            Debug.Log("CLICK");
             PointerToWorldPosition();
         }
 
-        public void OnFire()
-        {
-            Debug.Log("FIRE");
-        }
 
         protected override Vector3 GetPointerPosition()
         {
