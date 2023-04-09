@@ -6,7 +6,7 @@
             "id": "ae208545-c432-450f-bce1-3031dd2ebdec",
             "actions": [
                 {
-                    "name": "Select",
+                    "name": "PointerAction",
                     "type": "Button",
                     "id": "9256e289-328d-459e-95c6-698f9d1498bf",
                     "expectedControlType": "Button",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Select",
+                    "action": "PointerAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +34,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "Select",
+                    "action": "PointerAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,18 +7,24 @@ namespace TowerDefense.Player
     /// </summary>
     public abstract class BaseInputController : MonoBehaviour, IPlayerInput
     {
-        [SerializeField] protected float _cameraOffset = 3f;
+        [SerializeField, Tooltip("Layer that represents the level ground where the tower can be placed")] private LayerMask _groundMask;
+        [SerializeField] protected float _cameraOffset;
         [SerializeField] protected GameObject _debugPrefab;
         [SerializeField] protected bool _isDebugEnabled;
-
-        protected void PointerToWorldPosition()
+ 
+        protected void TranslatePointerToWorldGroundPosition()
         {
             var currentCamera = GetCurrentCamera();
             if (currentCamera == null) return;
+            //try get a projection of mouse/tap position to the ground
             var mousePos = GetPointerPosition();
-            mousePos.z = currentCamera.nearClipPlane + _cameraOffset;
-            var worldPosition = currentCamera.ScreenToWorldPoint(mousePos);
-            OnPointerDown(worldPosition);
+            Ray mouseRay = currentCamera.ScreenPointToRay(mousePos);
+            if(Physics.Raycast(mouseRay, out RaycastHit hitInfo, Mathf.Infinity, _groundMask))
+            {
+                Vector3 pointerWorldPosition = hitInfo.point;
+                if(_isDebugEnabled) Debug.DrawLine(pointerWorldPosition, transform.position);
+                OnPointerDown(pointerWorldPosition);
+            }
         }
 
         protected abstract Vector3 GetPointerPosition();

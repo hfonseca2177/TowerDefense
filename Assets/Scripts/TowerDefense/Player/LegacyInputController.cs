@@ -9,8 +9,9 @@ namespace TowerDefense.Player
     {
         private void Update()
         {
+            //when left mouse is triggered
             if (!Input.GetMouseButton(0)) return;
-            PointerToWorldPosition();
+            TranslatePointerToWorldGroundPosition();
         }
 
         protected override Vector3 GetPointerPosition()

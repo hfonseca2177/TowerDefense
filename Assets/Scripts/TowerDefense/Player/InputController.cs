@@ -9,9 +9,11 @@ namespace TowerDefense.Player
     public class InputController : BaseInputController
     {
 
-        public void OnSelect()
+        //[SerializeField, Tooltip("Player pointer input event")] private PointerInputEventAsset _onTowerAcquired;
+        
+        public void OnPointerAction()
         {
-            PointerToWorldPosition();
+            TranslatePointerToWorldGroundPosition();
         }
 
 
@@ -21,4 +23,5 @@ namespace TowerDefense.Player
         }
 
     }
+
 }
