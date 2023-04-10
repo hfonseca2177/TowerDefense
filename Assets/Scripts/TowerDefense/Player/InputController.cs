@@ -17,7 +17,7 @@ namespace TowerDefense.Player
         }
 
 
-        protected override Vector3 GetPointerPosition()
+        public override Vector3 GetPointerPosition()
         {
             return Mouse.current.position.ReadValue();
         }

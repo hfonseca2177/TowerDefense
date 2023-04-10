@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -16,10 +18,14 @@ namespace TowerDefense.Grid
         [Tooltip("height in meters for the grid")]
         [SerializeField] private int _gridHeight = 20;
         [SerializeField] private Transform _startingPosition;
-        [SerializeField] private GameObject _gridSpotPrefab;
-        [SerializeField] private GameObject _gridSpotVoidPrefab;
+        [SerializeField] private GameObject _gridSpot;
+        [SerializeField] private GameObject _gridSpotVoid;
+        /*[SerializeField] private VoidEventAsset _onSelectFo4rPlacement;
+        [SerializeField] private VoidEventAsset _onCancelPlacement;*/
         
         private GridCell[,] _grid;
+        private Hashtable _gridAllocations;
+        private Dictionary<Vector3, GridCell> _gridMap; 
         private int _gridRows = 12; // z changes
         private int _gridCols = 24; // x changes
         private float _yOffset = 0.5f;
@@ -49,7 +55,10 @@ namespace TowerDefense.Grid
         }
 
         private void InstantiateGrid()
-        {   
+        {
+            int maxAllocations = _gridRows * _gridCols;
+            _gridAllocations = new Hashtable(maxAllocations);
+            _gridMap = new Dictionary<Vector3, GridCell>(maxAllocations);
             Vector3 baseCoord = _startingPosition.position;
             _grid = new GridCell[_gridRows, _gridCols];
             float x = baseCoord.x;
@@ -63,8 +72,8 @@ namespace TowerDefense.Grid
                     gridCell.Coord = new int2(i, j);
                     gridCell.TowerId = -1;
                     gridCell.WorldPosition = point;
-                    var spot = InstantiateSpot(point);
                     _grid[i, j] = gridCell;
+                    _gridMap.Add(point, gridCell);
                     x += _snapScale;    
                 }
                 x = baseCoord.x;
@@ -72,26 +81,56 @@ namespace TowerDefense.Grid
             }
         }
 
-        private GameObject InstantiateSpot(Vector3 position)
+        public void HighLightSpotGridCell(Vector3 pointer)
         {
-            var spot = Instantiate(_gridSpotPrefab, position, Quaternion.identity, _startingPosition);
-            return spot;
-        }
-        
-        private void InstantiateVoidSpot(Vector3 position)
-        {
-            var spot = Instantiate(_gridSpotVoidPrefab, position, Quaternion.identity, _startingPosition);
-            spot.SetActive(false);
-        }
-        
-        private void CleanSpots()
-        {
-            var startSpotTransform = _startingPosition.transform;
-            int childCount = startSpotTransform.childCount;
-            for (int i = 0; i < childCount; i++)
+            
+            var testPosition = new Vector3(pointer.x , _yOffset, pointer.y);
+            Debug.Log($" TEST {testPosition}");
+            bool isOccupied = _gridAllocations.ContainsKey(testPosition);
+            if (isOccupied)
             {
-                Destroy(startSpotTransform.GetChild(i));
+                if(_gridSpot.activeSelf)_gridSpot.SetActive(false);
+                if(!_gridSpotVoid.activeSelf)_gridSpotVoid.SetActive(true);
+                _gridSpotVoid.transform.position = testPosition;
+                
             }
+            else
+            {
+                if(_gridSpotVoid.activeSelf)_gridSpotVoid.SetActive(false);
+                if(!_gridSpot.activeSelf)_gridSpot.SetActive(true);
+                _gridSpot.transform.position = testPosition;
+                
+            }
+        }
+
+        public GridCell PositionToGrid(Vector3 pointer)
+        {
+            GridCell cell = default;
+            var testPosition = new Vector3(pointer.x , _yOffset, pointer.y);
+            if (_gridMap.ContainsKey(testPosition))
+            {
+                cell = _gridMap[testPosition];
+            }
+            return cell;
+        }
+
+        public void DisableHighlightSpot()
+        {
+            _gridSpot.SetActive(false);
+            _gridSpotVoid.SetActive(false);
+        }
+
+        public void AllocateGrid(Vector3 position)
+        {
+            if (!IsAlreadyAllocated(position))
+            {
+                _gridAllocations.Add(position, true);    
+            }
+        }
+
+        public bool IsAlreadyAllocated(Vector3 position)
+        {
+            return _gridAllocations.ContainsKey(position);
         }
 
         private void OnDrawGizmosSelected()

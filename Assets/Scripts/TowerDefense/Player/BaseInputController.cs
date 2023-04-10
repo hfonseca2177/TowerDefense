@@ -7,8 +7,8 @@ namespace TowerDefense.Player
     /// </summary>
     public abstract class BaseInputController : MonoBehaviour, IPlayerInput
     {
-        [SerializeField, Tooltip("Layer that represents the level ground where the tower can be placed")] private LayerMask _groundMask;
-        [SerializeField] protected float _cameraOffset;
+        [Tooltip("Layer that represents the level ground where the tower can be placed")]
+        [SerializeField] private LayerMask _groundMask;
         [SerializeField] protected GameObject _debugPrefab;
         [SerializeField] protected bool _isDebugEnabled;
  
@@ -27,7 +27,7 @@ namespace TowerDefense.Player
             }
         }
 
-        protected abstract Vector3 GetPointerPosition();
+        public abstract Vector3 GetPointerPosition();
 
         private Camera GetCurrentCamera()
         {

@@ -10,10 +10,14 @@ namespace TowerDefense.Towers
     public class TowerManager : MonoBehaviour
     {
         [Header("Tower Manager - responsible for tower placement")]
-        [SerializeField, Tooltip("Placement Grid Manager")] private GridManager _gridManager;
-        [SerializeField, Tooltip("Tower prefab to be instantiated on placement")] private GameObject _tower;
-        [SerializeField, Tooltip("Player pointer input event")] private PointerInputEventAsset _onTowerAcquired;
-        [SerializeField, Tooltip("Enables debug trace")] private bool _isDebugEnabled;
+        [Tooltip("Placement Grid Manager")]
+        [SerializeField] private GridManager _gridManager;
+        [Tooltip("Tower prefab to be instantiated on placement")]
+        [SerializeField] private GameObject _tower;
+        [Tooltip("Player pointer input event")]
+        [SerializeField] private PointerInputEventAsset _onTowerAcquired;
+        [Tooltip("Enables debug trace")]
+        [SerializeField] private bool _isDebugEnabled;
 
         private void OnEnable()
         {
@@ -29,8 +33,10 @@ namespace TowerDefense.Towers
         {
             if (pointer.magnitude <= float.Epsilon) return;
             Vector3 position = _gridManager.SnapToGrid(pointer);
-            Debug.Log($"SnapTo: {position}");
+            if (_gridManager.IsAlreadyAllocated(position)) return;
             PlaceTower(position);
+            _gridManager.AllocateGrid(position);
+            if(_isDebugEnabled) Debug.Log($"SnapTo: {position}");
         }
         
         private void PlaceTower(Vector3 position)

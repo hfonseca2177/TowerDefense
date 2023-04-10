@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 705990367672279950}
   - component: {fileID: 705990367672279949}
   - component: {fileID: 705990367672279948}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: GridSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967294
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &705990367672279950
 Transform:

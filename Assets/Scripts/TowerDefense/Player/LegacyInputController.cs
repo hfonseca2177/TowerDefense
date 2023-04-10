@@ -14,7 +14,7 @@ namespace TowerDefense.Player
             TranslatePointerToWorldGroundPosition();
         }
 
-        protected override Vector3 GetPointerPosition()
+        public override Vector3 GetPointerPosition()
         {
             return Input.mousePosition;
         }

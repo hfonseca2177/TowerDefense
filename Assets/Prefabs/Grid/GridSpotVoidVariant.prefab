@@ -9,8 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 705990367672279946, guid: 56e7dd87963da2f4a811f176d34152e0, type: 3}
       propertyPath: m_Name
-      value: GridSpot
+      value: GridSpotVoidVariant
       objectReference: {fileID: 0}
+    - target: {fileID: 705990367672279948, guid: 56e7dd87963da2f4a811f176d34152e0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c42684e1806a5940a591d16c9786333, type: 2}
     - target: {fileID: 705990367672279950, guid: 56e7dd87963da2f4a811f176d34152e0, type: 3}
       propertyPath: m_RootOrder
       value: 0
