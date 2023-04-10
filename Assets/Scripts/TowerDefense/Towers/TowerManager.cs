@@ -1,4 +1,5 @@
 using TowerDefense.Events;
+using TowerDefense.Grid;
 using UnityEngine;
 
 namespace TowerDefense.Towers
@@ -9,6 +10,7 @@ namespace TowerDefense.Towers
     public class TowerManager : MonoBehaviour
     {
         [Header("Tower Manager - responsible for tower placement")]
+        [SerializeField, Tooltip("Placement Grid Manager")] private GridManager _gridManager;
         [SerializeField, Tooltip("Tower prefab to be instantiated on placement")] private GameObject _tower;
         [SerializeField, Tooltip("Player pointer input event")] private PointerInputEventAsset _onTowerAcquired;
         [SerializeField, Tooltip("Enables debug trace")] private bool _isDebugEnabled;
@@ -26,7 +28,9 @@ namespace TowerDefense.Towers
         private void OnTowerAcquiredEvent(Vector3 pointer)
         {
             if (pointer.magnitude <= float.Epsilon) return;
-            PlaceTower(pointer);
+            Vector3 position = _gridManager.SnapToGrid(pointer);
+            Debug.Log($"SnapTo: {position}");
+            PlaceTower(position);
         }
         
         private void PlaceTower(Vector3 position)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 978320286780634116}
   - component: {fileID: 978320286780634115}
   - component: {fileID: 978320286780634114}
+  - component: {fileID: 6984371121263827850}
   m_Layer: 0
   m_Name: TowerModel
   m_TagString: Untagged
@@ -96,6 +97,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &6984371121263827850
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978320286780634112}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &978320287189838936
 GameObject:
   m_ObjectHideFlags: 0
