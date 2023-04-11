@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6856336982715814896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6856336982715814899}
+  - component: {fileID: 6856336982715814898}
+  m_Layer: 0
+  m_Name: TowerFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &6856336982715814899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856336982715814896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6856336982715814898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856336982715814896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21286ce11dd04f2b9c43095cc0fce2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridManager: {fileID: 0}
+  _towerDefinitions:
+  - {fileID: 11400000, guid: 24dc132fcb4d7b542bed111ca1027a4e, type: 2}
+  - {fileID: 11400000, guid: 1b5e41e81f1bc294a95cebe1672d0272, type: 2}
+  - {fileID: 11400000, guid: 46096897b63217f47818cbbca8bd71be, type: 2}
+  _onTowerPurchase: {fileID: 11400000, guid: 2863f44e11fc2004b81c019355e92341, type: 2}
+  _onTowerPurchaseCanceledNotify: {fileID: 11400000, guid: 907c17235a850da46839fe1615299af8, type: 2}
+  _isDebugEnabled: 0

@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6305230506812099695}
   - component: {fileID: 6305230506812099694}
   - component: {fileID: 6305230506812099693}
+  - component: {fileID: 5036079055934734657}
   m_Layer: 5
   m_Name: Tower1Button
   m_TagString: Untagged
@@ -214,3 +215,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5036079055934734657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305230506812099691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4bf36be3fd4b68bc64cc24e955a27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerDefinition: {fileID: 0}
+  _onTowerPurchaseSelectNotify: {fileID: 11400000, guid: 64c859b541e28274887944d2aca22cb9, type: 2}

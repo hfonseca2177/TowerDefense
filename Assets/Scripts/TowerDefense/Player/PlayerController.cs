@@ -1,5 +1,4 @@
 using TowerDefense.Events;
-using TowerDefense.Grid;
 using UnityEngine;
 
 namespace TowerDefense.Player
@@ -9,25 +8,49 @@ namespace TowerDefense.Player
     /// </summary>
     public class PlayerController : InputController
     {
-        [Header("PLayer controller - player input actions")]
-        [Tooltip("Whenever Player selects a tower for placement")]
-        [SerializeField] private PointerInputEventAsset _onTowerAcquiredNotify;
-        [Tooltip("Placement Grid Manager")]
-        [SerializeField] private GridManager _gridManager;
-       
+        [Tooltip("Enable tower purchase and placement")]
+        [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseSelect;
+        [Tooltip("Notifies that Tower was purchased")]
+        [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseNotify;
+        [Tooltip("Whenever Tower placement fails return the purchase back")]
+        [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseCanceled;
+        
+        
         private bool _isPlacementActive;
+        private TowerPurchaseDTO _currentTowerPurchase;
+        
+        private void OnEnable()
+        {
+            _onTowerPurchaseSelect.OnInvoked.AddListener(OnTowerPurchaseSelectEvent);
+            _onTowerPurchaseCanceled.OnInvoked.AddListener(OnTowerPurchaseCanceledEvent);
+        }
 
-        //button placement cancel selection 
+        private void OnDisable()
+        {
+            _onTowerPurchaseSelect.OnInvoked.RemoveListener(OnTowerPurchaseSelectEvent);
+            _onTowerPurchaseCanceled.OnInvoked.RemoveListener(OnTowerPurchaseCanceledEvent);
+        }
+
+        private void OnTowerPurchaseCanceledEvent(TowerPurchaseDTO towerPurchase)
+        {
+            RefundPurchase(towerPurchase);
+        }
+
+        private void OnTowerPurchaseSelectEvent(TowerPurchaseDTO towerPurchase)
+        {
+            OnSelectForPlacement(towerPurchase);
+        }
+
+        //placement cancel selection triggered by UI 
         public void OnCancelPlacementEvent()
         {
             _isPlacementActive = false;
-            _gridManager.DisableHighlightSpot();
         }
 
-        //button placement selection
-        public void OnSelectForPlacementEvent()
+        private void OnSelectForPlacement(TowerPurchaseDTO towerPurchase)
         {
             _isPlacementActive = true;
+            _currentTowerPurchase = towerPurchase;
         }
 
         public override void OnPointerDown(Vector3 worldPosition)
@@ -36,23 +59,14 @@ namespace TowerDefense.Player
             if (_isPlacementActive)
             {
                 _isPlacementActive = false;
-                _onTowerAcquiredNotify.Invoke(worldPosition);
-            }
-            else
-            {
-                GridCell cell = _gridManager.PositionToGrid(worldPosition);
-                if (cell.WorldPosition.magnitude > 0)
-                {
-                    Debug.Log("CELL FOUND");
-                }
+                _currentTowerPurchase.Position = worldPosition;
+                _onTowerPurchaseNotify.Invoke(_currentTowerPurchase);
             }
         }
 
-        private void LateUpdate()
+        private void RefundPurchase(TowerPurchaseDTO towerPurchase)
         {
-            if (!_isPlacementActive) return;
-            var pointer = GetPointerPosition();
-            _gridManager.HighLightSpotGridCell(pointer);
+            //TODO refund purchase cost to wallet
         }
     }
 }
