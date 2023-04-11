@@ -1,0 +1,17 @@
+{
+    "name": "EmenyAD",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d4bfea64f965c5f45a907ed638f667e5",
+        "GUID:966f003d4b205b64ba5297716332ba2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

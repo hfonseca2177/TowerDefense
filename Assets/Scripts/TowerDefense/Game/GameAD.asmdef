@@ -1,0 +1,17 @@
+{
+    "name": "GameAD",
+    "rootNamespace": "",
+    "references": [
+        "GUID:966f003d4b205b64ba5297716332ba2f",
+        "GUID:225d43b564482ea49989ef6cdc73b3c3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
