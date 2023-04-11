@@ -17,10 +17,12 @@ namespace TowerDefense.Enemies
         [SerializeField] private EnemyDefinition _enemyDefinition;
         
         private NavMeshAgent _agent;
+        private int _currentDamage;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
+            _currentDamage = _enemyDefinition.BaseLineDamage;
         }
 
         private void OnEnable()
@@ -33,9 +35,10 @@ namespace TowerDefense.Enemies
             _agent.destination = _targetReference.Target.position;
         }
 
-        public void HitPlayer()
+        public int HitPlayer()
         {
             _onReleaseEnemyNotify.Invoke(this.gameObject);
+            return _currentDamage;
         }
 
         public void TakeDamage(float damage)
