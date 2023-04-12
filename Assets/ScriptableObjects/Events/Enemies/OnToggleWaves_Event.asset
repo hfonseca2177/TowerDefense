@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6bb139497414581a20b737152806d9e, type: 3}
-  m_Name: Chopter_EnemyDefinition
+  m_Script: {fileID: 11500000, guid: d8262f806b6142908e06626a6bab6ccf, type: 3}
+  m_Name: OnToggleWaves_Event
   m_EditorClassIdentifier: 
-  BaselineHitPoint: 2
-  BaselineSpeed: 3
-  BaseLineDamage: 1
-  SpawnCost: 8
-  SpawnRequestTrigger: {fileID: 11400000, guid: 5342dec68d063c544b772da56bce574c, type: 2}
+  _isDebugEnabled: 0
+  OnInvoked:
+    m_PersistentCalls:
+      m_Calls: []

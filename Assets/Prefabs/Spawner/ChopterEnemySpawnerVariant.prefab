@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: _onEnemyRelease
       value: 
       objectReference: {fileID: 11400000, guid: fa28b38042907cf4ca66ea0a77a6ab98, type: 2}
+    - target: {fileID: 7718109939286171900, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
+      propertyPath: _onSpawnRequest
+      value: 
+      objectReference: {fileID: 11400000, guid: 5342dec68d063c544b772da56bce574c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
 --- !u!4 &5602251867462155183 stripped

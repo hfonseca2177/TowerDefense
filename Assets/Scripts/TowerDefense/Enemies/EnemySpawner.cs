@@ -12,12 +12,10 @@ namespace TowerDefense.Enemies
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private Transform _spawningPoint;
-        [SerializeField] private float _spawnInterval = 3f;
         [SerializeField] private GameObject _visualRepresentation;
         [SerializeField] private ObjectPooling _enemyPool;
         [SerializeField] private GameObjectEventAsset _onEnemyRelease;
-
-        private float _elapsedTime;
+        [SerializeField] private VoidEventAsset _onSpawnRequest;
 
         private void Start()
         {
@@ -27,11 +25,18 @@ namespace TowerDefense.Enemies
         private void OnEnable()
         {
             _onEnemyRelease.OnInvoked.AddListener(OnEnemyReleaseEvent);
+            _onSpawnRequest.OnInvoked.AddListener(OnSpawnRequestEvent);
         }
 
         private void OnDisable()
         {
             _onEnemyRelease.OnInvoked.RemoveListener(OnEnemyReleaseEvent);
+            _onSpawnRequest.OnInvoked.RemoveListener(OnSpawnRequestEvent);
+        }
+
+        private void OnSpawnRequestEvent()
+        {
+            SpawnEnemy();
         }
 
         private void OnEnemyReleaseEvent(GameObject enemy)
@@ -61,12 +66,5 @@ namespace TowerDefense.Enemies
             
         }
 
-        private void Update()
-        {
-            _elapsedTime += Time.deltaTime;
-            if (_elapsedTime < _spawnInterval) return;
-            _elapsedTime = 0;
-            SpawnEnemy();
-        }
     }
 }

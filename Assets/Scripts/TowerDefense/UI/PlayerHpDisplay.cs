@@ -42,7 +42,6 @@ namespace TowerDefense.UI
         {
             _currentHp = currentHp;
             var percentage =_currentHp / (float)_maxHp;
-            Debug.Log(percentage);
             _fillBar.fillAmount = percentage;
             _percentage.text = percentage.ToString();
         }
