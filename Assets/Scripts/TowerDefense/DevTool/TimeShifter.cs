@@ -2,6 +2,9 @@
 
 namespace TowerDefense.DevTool
 {
+    /// <summary>
+    /// Accelerates time resolution in game
+    /// </summary>
     public class TimeShifter : MonoBehaviour
     {
         [SerializeField] private float _timeShiftRate = 0.2f;

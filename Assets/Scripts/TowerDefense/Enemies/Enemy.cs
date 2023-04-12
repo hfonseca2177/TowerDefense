@@ -11,13 +11,20 @@ namespace TowerDefense.Enemies
     {
         [Tooltip("Reference to player base as target")]
         [SerializeField] private TargetReference _targetReference;
-        [Tooltip("Returns enemy back to pool")]
-        [SerializeField] private GameObjectEventAsset _onReleaseEnemyNotify;
         [Tooltip("Enemy Base Stats")]
         [SerializeField] private EnemyDefinition _enemyDefinition;
+        [Header("Events")]
+        [Tooltip("Returns enemy back to pool")]
+        [SerializeField] private GameObjectEventAsset _onReleaseEnemyNotify;
+        [Tooltip("Notify enemy death")] 
+        [SerializeField] private VoidEventAsset _onEnemyDeathNotify;
+        [Tooltip("Whenever enemy takes damage")] 
+        [SerializeField] private FloatEventAsset _onEnemyDamageTakenNotify;
+        
         
         private NavMeshAgent _agent;
-        private int _currentDamage;
+        private float _currentDamage;
+        private float _currentHp;
 
         private void Awake()
         {
@@ -35,7 +42,7 @@ namespace TowerDefense.Enemies
             _agent.destination = _targetReference.Target.position;
         }
 
-        public int HitPlayer()
+        public float HitPlayer()
         {
             _onReleaseEnemyNotify.Invoke(this.gameObject);
             return _currentDamage;
@@ -43,8 +50,13 @@ namespace TowerDefense.Enemies
 
         public void TakeDamage(float damage)
         {
-            //TODO get current damage based on stage _enemyDefinition.BaseLineDamage;
-            //create a state for base stats
+            _currentHp -= damage;
+            _onEnemyDamageTakenNotify.Invoke(damage);
+            if (_currentHp < 0)
+            {
+                _onEnemyDeathNotify.Invoke();
+            }
         }
+
     }
 }

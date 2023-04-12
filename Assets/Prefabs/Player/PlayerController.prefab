@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4866677639606730952
 Transform:
@@ -93,7 +93,8 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _cameraOffset: 0
   _debugPrefab: {fileID: 2271931985881084427, guid: 43e0df12332d6264c858b8210946cfc4, type: 3}
   _isDebugEnabled: 0
-  _onTowerAcquiredNotify: {fileID: 11400000, guid: 5d36736a79812cd49bc8b235e720cc64, type: 2}
+  _onTowerPurchaseSelect: {fileID: 11400000, guid: 64c859b541e28274887944d2aca22cb9, type: 2}
+  _onTowerPurchaseNotify: {fileID: 11400000, guid: 2863f44e11fc2004b81c019355e92341, type: 2}
+  _onTowerPurchaseCanceled: {fileID: 11400000, guid: 907c17235a850da46839fe1615299af8, type: 2}

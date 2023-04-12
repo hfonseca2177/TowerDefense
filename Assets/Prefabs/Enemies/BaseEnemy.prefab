@@ -60,8 +60,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetReference: {fileID: 11400000, guid: 03b181371a0067444807dbe3dfa9f571, type: 2}
-  _onReleaseEnemyNotify: {fileID: 0}
   _enemyDefinition: {fileID: 0}
+  _onReleaseEnemyNotify: {fileID: 0}
+  _onEnemyDeathNotify: {fileID: 11400000, guid: df3365bfa36706347a31ad9018874f5f, type: 2}
+  _onEnemyDamageTakenNotify: {fileID: 11400000, guid: c94b951114bbd924abf0215d69dac4e3, type: 2}
 --- !u!195 &3743059765612393159
 NavMeshAgent:
   m_ObjectHideFlags: 0

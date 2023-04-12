@@ -45,3 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBase: {fileID: 0}
   _targetReference: {fileID: 11400000, guid: 03b181371a0067444807dbe3dfa9f571, type: 2}
+  _delayToStartWaves: 0
+  _onToggleWavesNotify: {fileID: 11400000, guid: c381f9f17f542804d8fdf0496e30125b, type: 2}
+  _onGameStartNotify: {fileID: 11400000, guid: c9130120a480b0b44a4792c1536aa6c8, type: 2}
+  _onGameOverNotify: {fileID: 11400000, guid: 84eb92e9b54e57a4a9427ed6f8c92fa9, type: 2}
+  _onPlayerKilled: {fileID: 11400000, guid: 290e704daa08c6040b2da0f026ac2514, type: 2}

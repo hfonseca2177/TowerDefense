@@ -50,6 +50,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9098799be608b824ebc8cbecf8f3155b, type: 2}
   - {fileID: 11400000, guid: 3f7f9ca4700ae904f9ce6c9ddf446312, type: 2}
   _onToggleWaves: {fileID: 11400000, guid: c381f9f17f542804d8fdf0496e30125b, type: 2}
-  _state: 0
   _onNewStageNotify: {fileID: 11400000, guid: 1fb63a452fcca8f46a8bd972e84e4dac, type: 2}
   _onNewWaveNotify: {fileID: 11400000, guid: 20f9dafdcbdfd65408fec081088ed454, type: 2}
+  _onGameOver: {fileID: 11400000, guid: 84eb92e9b54e57a4a9427ed6f8c92fa9, type: 2}

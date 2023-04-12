@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Events;
@@ -20,6 +18,8 @@ namespace TowerDefense.Enemies
         [SerializeField] private VoidEventAsset _onToggleWaves;
         [SerializeField] private IntEventAsset _onNewStageNotify;
         [SerializeField] private IntEventAsset _onNewWaveNotify;
+        [Tooltip("Notify when game is over")]
+        [SerializeField] private VoidEventAsset _onGameOver;
  
         private WaveStateEnum _state = WaveStateEnum.Disabled;
         private Dictionary<int, WaveSettings> _waveDictionary;
@@ -43,11 +43,18 @@ namespace TowerDefense.Enemies
         private void OnEnable()
         {
             _onToggleWaves.OnInvoked.AddListener(OnToggleWavesEvent);
+            _onGameOver.OnInvoked.AddListener(OnGameOverEvent);
         }
 
         private void OnDisable()
         {
             _onToggleWaves.OnInvoked.RemoveListener(OnToggleWavesEvent);
+            _onGameOver.OnInvoked.RemoveListener(OnGameOverEvent);
+        }
+
+        private void OnGameOverEvent()
+        {
+            _state = WaveStateEnum.Disabled;
         }
 
         private void OnToggleWavesEvent()

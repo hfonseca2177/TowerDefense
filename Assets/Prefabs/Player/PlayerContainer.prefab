@@ -186,5 +186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBaseStats: {fileID: 11400000, guid: b348987f097cb7748b2e5c834f46e9ea, type: 2}
   _onPlayerHpUpdateNotify: {fileID: 11400000, guid: 637327d2cf3caba44b4341d6ed7750d2, type: 2}
-  _onPlayerDamageTakenNotify: {fileID: 11400000, guid: 4f899dc0a8fb5554eb61c35e86ed1593, type: 2}
+  _onPlayerDamageTakenNotify: {fileID: 11400000, guid: 9a97a9d621a1e334390859798ccbaed4, type: 2}
   _visualRepresentation: {fileID: 2049701081}
+  _onPlayerKilledNotify: {fileID: 11400000, guid: 290e704daa08c6040b2da0f026ac2514, type: 2}

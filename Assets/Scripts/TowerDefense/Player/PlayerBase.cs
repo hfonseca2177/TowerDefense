@@ -15,12 +15,13 @@ namespace TowerDefense.Player
         [Tooltip("Notifies current player Hit Points")]
         [SerializeField] private IntEventAsset _onPlayerHpUpdateNotify;
         [Tooltip("Notifies player damage taken")]
-        [SerializeField] private IntEventAsset _onPlayerDamageTakenNotify;
+        [SerializeField] private FloatEventAsset _onPlayerDamageTakenNotify;
         [Tooltip("Visual representation to show where is the base position")]
         [SerializeField] private GameObject _visualRepresentation;
-        
+        [Tooltip("Notify player has no more HP")]
+        [SerializeField] private VoidEventAsset _onPlayerKilledNotify;
         //run time HP state
-        private int _currentHP;
+        private float _currentHP;
 
         private void Awake()
         {
@@ -36,10 +37,15 @@ namespace TowerDefense.Player
         {
             if (other.TryGetComponent(out Enemy enemy))
             {
-                int damageTaken = enemy.HitPlayer();
+                var damageTaken = enemy.HitPlayer();
                 _currentHP -= damageTaken;
                 _onPlayerDamageTakenNotify.Invoke(damageTaken);
-                _onPlayerHpUpdateNotify.Invoke(_currentHP);
+                if (_currentHP < 0)
+                {
+                    _onPlayerKilledNotify.Invoke();
+                    _currentHP = 0;
+                }
+                _onPlayerHpUpdateNotify.Invoke((int)_currentHP);
             }
         }
     }
