@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6435809727196582737
 Transform:
@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca0f765b1054b04ad65bc08c22f9d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyKillScore: {fileID: 11400000, guid: 6cbe7041edede704ba892721aba6ed02, type: 2}
+  _finishWaveScore: {fileID: 11400000, guid: 7d2d50d9393c0b644a6ca6f841d8d8e6, type: 2}
+  _newStageScore: {fileID: 11400000, guid: dadcb2b4e603c8a49b7fd71db2bcc2fd, type: 2}
+  _timeScore: {fileID: 11400000, guid: 0ff088bc756c38947923b66a0ec4e1bd, type: 2}
+  _onScoreUpdateNotify: {fileID: 11400000, guid: 5f116720fb36223439a51b90936799b9, type: 2}
+  _onNewScoreAwardedNotify: {fileID: 11400000, guid: 45c7731c253853e4caf08e67c9585443, type: 2}
   _onGameStart: {fileID: 11400000, guid: c9130120a480b0b44a4792c1536aa6c8, type: 2}
   _onGameOver: {fileID: 11400000, guid: 84eb92e9b54e57a4a9427ed6f8c92fa9, type: 2}
   _onNewStage: {fileID: 11400000, guid: 1fb63a452fcca8f46a8bd972e84e4dac, type: 2}

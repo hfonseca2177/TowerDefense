@@ -15,6 +15,8 @@ namespace TowerDefense.Game
         [SerializeField] private FloatEventAsset _onPurchaseSpentNotify;
         [Tooltip("Notifies a new successful update")] 
         [SerializeField] private FloatEventAsset _onUpgradeSpentNotify;
+        [Tooltip("Notifies when currency is updated")] 
+        [SerializeField] private FloatEventAsset _onCurrencyUpdateNotify;
 
         private float _currentCurrency;
 
@@ -36,6 +38,7 @@ namespace TowerDefense.Game
         private void OnNewScoreEvent(float score)
         {
             _currentCurrency += _settings.ConversionRate * score;
+            _onCurrencyUpdateNotify.Invoke(_currentCurrency);
         }
 
         public bool PurchaseTower(float cost)
@@ -64,6 +67,7 @@ namespace TowerDefense.Game
             if (hasFunds)
             {
                 _currentCurrency -= cost;
+                _onCurrencyUpdateNotify.Invoke(_currentCurrency);
             }
             return hasFunds;
         }

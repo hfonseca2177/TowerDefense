@@ -98,3 +98,4 @@ MonoBehaviour:
   _onTowerPurchaseSelect: {fileID: 11400000, guid: 64c859b541e28274887944d2aca22cb9, type: 2}
   _onTowerPurchaseNotify: {fileID: 11400000, guid: 2863f44e11fc2004b81c019355e92341, type: 2}
   _onTowerPurchaseCanceled: {fileID: 11400000, guid: 907c17235a850da46839fe1615299af8, type: 2}
+  _notifyUser: {fileID: 11400000, guid: ffc3757134d789247be49ab55fc69328, type: 2}

@@ -81,6 +81,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a63611e92efc2654e84f474ee2efdc49, type: 2}
     - target: {fileID: 3402778724752576025, guid: 0fd13682d80d2cc4cb34deb6bd6ce0d6, type: 3}
+      propertyPath: _onEnemyDeathNotify
+      value: 
+      objectReference: {fileID: 11400000, guid: df3365bfa36706347a31ad9018874f5f, type: 2}
+    - target: {fileID: 3402778724752576025, guid: 0fd13682d80d2cc4cb34deb6bd6ce0d6, type: 3}
       propertyPath: _onReleaseEnemyNotify
       value: 
       objectReference: {fileID: 11400000, guid: 8dd6a8f6f70a4fb46bbb5ea5b03b3b13, type: 2}
