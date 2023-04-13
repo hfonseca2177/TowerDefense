@@ -13,6 +13,7 @@ namespace TowerDefense.Enemies
         public float BaselineSpeed;
         public int BaseLineDamage;
         public float SpawnCost;
+        public float Score;
         public VoidEventAsset SpawnRequestTrigger;
     }
 }

@@ -7,7 +7,6 @@ namespace TowerDefense.Towers
     /// </summary>
     public class TowerUpgradePanel : MonoBehaviour
     {
-        
         [SerializeField] private GameObject _upgradeButton;
 
         public void OnUnitySelect()
@@ -17,7 +16,6 @@ namespace TowerDefense.Towers
 
         public void UpgradeUnity()
         {
-            Debug.Log("Upgraded");
             _upgradeButton.SetActive(false);
         }
     }

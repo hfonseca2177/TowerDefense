@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Events;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+ 
 namespace TowerDefense.Enemies
 {
     /// <summary>
@@ -23,8 +23,7 @@ namespace TowerDefense.Enemies
  
         private WaveStateEnum _state = WaveStateEnum.Disabled;
         private Dictionary<int, WaveSettings> _waveDictionary;
-        private const int WavesPerStage = 10;
-        private readonly int[] _fibonacciSequence = {0, 1, 1, 2, 3, 5, 8, 13, 21, 34};
+      
         private WaveSettings _currentWaveSettings;
         private int _currentWaveIndex;
         private int _currentStage;
@@ -99,18 +98,19 @@ namespace TowerDefense.Enemies
         {   
             CheckIfCustomWaveSettings(_currentWaveIndex);
             //step 1 - calc stage
-            int stage = GetStage(_currentWaveIndex);
+            int stage = WaveHelper.Instance.GetStage(_currentWaveIndex);
+            
             if (stage != _currentStage)
             {
                 _currentStage = stage;
                 _onNewStageNotify.Invoke(_currentStage);
             }
             //step 2 - get wave intensifier factor
-            int intensifier = GetWaveIntensifierFactor(_currentWaveIndex);
+            int intensifier = WaveHelper.Instance.GetWaveIntensifierFactor(_currentWaveIndex);
             //step 3 - calc dump modifier
-            float dumpingModifier = CalcDumpingModifier(intensifier);
+            float dumpingModifier = WaveHelper.Instance.CalcDumpingModifier(intensifier, _currentWaveSettings.DumpFactor);
             //step 4 - calc wave budget
-            float budget = CalcWaveBudget(stage, dumpingModifier);
+            float budget = WaveHelper.Instance.CalcWaveBudget(stage, dumpingModifier, _currentWaveSettings.MinimumCost);
             //step 5 - sort wave content
             _onNewWaveNotify.Invoke(_currentWaveIndex);
             _spawningCoroutine = StartCoroutine(SpawnEnemies(budget));
@@ -122,43 +122,13 @@ namespace TowerDefense.Enemies
             _currentWaveSettings = _waveDictionary[incomingWave];
         }
 
-        private int GetStage(int waveIndex)
-        {
-            return Mathf.FloorToInt((float) waveIndex / WavesPerStage) + 1;
-        }
-
-        //returns the wave index inside the stage
-        private int GetStageWaveIndex(int waveIndex)
-        {
-            float factionInStage = (float)waveIndex / (float) WavesPerStage;
-            var diff = factionInStage - Mathf.FloorToInt(factionInStage);
-            return Mathf.FloorToInt(diff * 10.0f);
-        }
-        
-        private int GetWaveIntensifierFactor(int waveIndex)
-        {
-            int waveIndexInStage = GetStageWaveIndex(waveIndex);
-            Debug.Log(waveIndexInStage);
-            return  _fibonacciSequence[waveIndexInStage];
-        }
-
-        private float CalcDumpingModifier(int intensifier)
-        {
-            return intensifier * _currentWaveSettings.DumpFactor + 1;
-        }
-
         private void FinishWave()
         {
             _elapsedTime = 0;
             _state = WaveStateEnum.OnCooldown;
             _currentWaveIndex++;
         }
-
-        private float CalcWaveBudget(int stage, float dumpingModifier)
-        {
-            return _currentWaveSettings.MinimumCost * Mathf.Pow(1 + stage, dumpingModifier);
-        }
-
+        
         private IEnumerator SpawnEnemies(float budget)
         {
             float currentBudget = budget;

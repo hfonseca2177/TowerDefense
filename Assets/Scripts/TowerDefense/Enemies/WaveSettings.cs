@@ -10,7 +10,7 @@ namespace TowerDefense.Enemies
     {
         //wave index
         public int Wave;
-        //Minimum cost to be sorted
+        //Minimum budget cost to be sorted
         public float MinimumCost;
         //Dump modifier for the Cost Budget
         public float DumpFactor;

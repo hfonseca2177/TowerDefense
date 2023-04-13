@@ -8,7 +8,22 @@ namespace TowerDefense.Game
     /// </summary>
     public class ScoreSystem : MonoBehaviour
     {
+        [Header("Settings")] 
+        [Tooltip("Score when player kills enemy")]
+        [SerializeField] private ScoreSettings _enemyKillScore; 
+        [Tooltip("Score when player finishes a wave")]
+        [SerializeField] private ScoreSettings _finishWaveScore;
+        [Tooltip("Score when player reaches anew stage")]
+        [SerializeField] private ScoreSettings _newStageScore;
+        [Tooltip("Score based on time elapsed for the run")]
+        [SerializeField] private ScoreSettings _timeScore;
+        
+        
         [Header("Events")]
+        [Tooltip("Notifies on general score update")] 
+        [SerializeField] private FloatEventAsset _onScoreUpdateNotify;
+        [Tooltip("Notifies a new score awarded")] 
+        [SerializeField] private FloatEventAsset _onNewScoreAwardedNotify;
         [Tooltip("when a new game started")]
         [SerializeField] private VoidEventAsset _onGameStart;
         [Tooltip("when game is over")]
@@ -20,7 +35,7 @@ namespace TowerDefense.Game
         [Tooltip("Notifies player damage taken")]
         [SerializeField] private IntEventAsset _onPlayerDamageTaken;
         [Tooltip("Notify enemy death")] 
-        [SerializeField] private VoidEventAsset _onEnemyDeath;
+        [SerializeField] private FloatEventAsset _onEnemyDeath;
         [Tooltip("Whenever enemy takes damage")] 
         [SerializeField] private FloatEventAsset _onEnemyDamageTaken;
         
@@ -28,6 +43,7 @@ namespace TowerDefense.Game
         private GameScore _bestScore;
         private GameScore _currentScore;
         private float _startTime;
+        private float _waveStartTime;
         private int _currentStage;
         private int _currentWave;
 
@@ -63,17 +79,20 @@ namespace TowerDefense.Game
             _onEnemyDamageTaken.OnInvoked.RemoveListener(OnEnemyDamageTakenEvent);
         }
 
-        private void OnEnemyDeathEvent()
+        private void OnEnemyDeathEvent(float enemyScoreValue)
         {
             _currentScore.killCount++;
-            //TODO _currentScore.score += GetScoreEnemyDeath(stage, wave)
+            var scoreAwarded = ScoreHelper.Instance.GetScoreEnemyDeath(enemyScoreValue, _currentWave,
+                _enemyKillScore.FlatModifier, _enemyKillScore.PercentageModifier);
+            _currentScore.score += scoreAwarded;
+            _onScoreUpdateNotify.Invoke(_currentScore.score);
+            _onNewScoreAwardedNotify.Invoke(scoreAwarded);
         }
 
 
         private void OnEnemyDamageTakenEvent(float damage)
         {
             _currentScore.damageDone += damage;
-            //TODO _currentScore.score += GetScoreEnemyDamageTake(stage, wave)
         }
 
 
@@ -85,20 +104,53 @@ namespace TowerDefense.Game
 
         private void OnNewWaveEvent(int wave)
         {
+            float waveElapsedTime = Time.time - _waveStartTime;  
             _currentScore.waves++;
+            _waveStartTime = Time.time;
+            //if first wave, none completed yet
+            if(_currentScore.waves == 1) return; 
+            //scores by finishing current wave
+            ScoreNewWave();
+            //scores by timer
+            ScoreTimer(waveElapsedTime);
+            //once award score from previous wave, update current reference
             _currentWave = wave;
         }
 
+        private void ScoreNewWave()
+        {
+            var scoreAwarded = ScoreHelper.Instance.GetNewWaveCompleted(_finishWaveScore.BaseValue, _currentWave,
+                _finishWaveScore.FlatModifier, _finishWaveScore.PercentageModifier);
+            _currentScore.score += scoreAwarded;
+            _onScoreUpdateNotify.Invoke(_currentScore.score);
+            _onNewScoreAwardedNotify.Invoke(scoreAwarded);
+        }
+
+        private void ScoreTimer(float elapsedTime)
+        {
+            var scoreAwarded = ScoreHelper.Instance.GetScoreByTimeElapsed(elapsedTime, _currentWave,
+                _timeScore.FlatModifier, _timeScore.PercentageModifier, _timeScore.Rate);
+            _currentScore.score += scoreAwarded;
+            _onScoreUpdateNotify.Invoke(_currentScore.score);
+            _onNewScoreAwardedNotify.Invoke(scoreAwarded);
+        }
+        
         private void OnNewStageEvent(int stage)
         {
             _currentScore.stages++;
             _currentStage = stage;
+            var scoreAwarded = ScoreHelper.Instance.GetNewWaveCompleted(_newStageScore.BaseValue, _currentStage,
+                _newStageScore.FlatModifier, _newStageScore.PercentageModifier);
+            _currentScore.score += scoreAwarded;
+            _onScoreUpdateNotify.Invoke(_currentScore.score);
+            _onNewScoreAwardedNotify.Invoke(scoreAwarded);
         }
 
         private void OnGameStartEvent()
         {
             _currentScore = new GameScore();
             _startTime = Time.time;
+            _waveStartTime = Time.time;
         }
 
         private void OnGameOverEvent()

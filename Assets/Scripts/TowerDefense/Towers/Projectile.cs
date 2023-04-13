@@ -46,8 +46,10 @@ namespace TowerDefense.Towers
         }
 
         //Starts projectile physics
-        public void Fire()
+        public void Fire(float damage, float speed)
         {
+            _damage = damage;
+            _speed = speed;
             _rigidBody.velocity = transform.forward * _speed;
             _launched = true;
         }

@@ -7,7 +7,7 @@ namespace TowerDefense.Game
     /// </summary>
     public class GameScore: SerializableData
     {
-        public long score;
+        public float score;
         public int killCount;
         public float timeElapsed;
         public float damageDone;

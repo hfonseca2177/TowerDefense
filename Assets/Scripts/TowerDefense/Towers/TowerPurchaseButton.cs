@@ -1,5 +1,4 @@
-﻿using System;
-using TowerDefense.Events;
+﻿using TowerDefense.Events;
 using UnityEngine;
 using UnityEngine.UI;
 

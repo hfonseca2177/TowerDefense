@@ -17,11 +17,15 @@ namespace TowerDefense.Enemies
         [Tooltip("Returns enemy back to pool")]
         [SerializeField] private GameObjectEventAsset _onReleaseEnemyNotify;
         [Tooltip("Notify enemy death")] 
-        [SerializeField] private VoidEventAsset _onEnemyDeathNotify;
+        [SerializeField] private FloatEventAsset _onEnemyDeathNotify;
         [Tooltip("Whenever enemy takes damage")] 
         [SerializeField] private FloatEventAsset _onEnemyDamageTakenNotify;
-        
-        
+
+        public bool IsAlive
+        {
+            get { return _currentHp > 0; }
+        }
+
         private NavMeshAgent _agent;
         private float _currentDamage;
         private float _currentHp;
@@ -52,11 +56,16 @@ namespace TowerDefense.Enemies
         {
             _currentHp -= damage;
             _onEnemyDamageTakenNotify.Invoke(damage);
-            if (_currentHp < 0)
-            {
-                _onEnemyDeathNotify.Invoke();
-            }
+            if (_currentHp > 0) return;
+            _onEnemyDeathNotify.Invoke(_enemyDefinition.Score);
+            _onReleaseEnemyNotify.Invoke(this.gameObject);
         }
+
+        public void ApplySnareMovement(float amount)
+        {
+            _agent.speed -= amount;
+        }
+        
 
     }
 }

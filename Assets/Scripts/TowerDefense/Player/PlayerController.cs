@@ -8,12 +8,15 @@ namespace TowerDefense.Player
     /// </summary>
     public class PlayerController : InputController
     {
+        
         [Tooltip("Enable tower purchase and placement")]
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseSelect;
         [Tooltip("Notifies that Tower was purchased")]
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseNotify;
         [Tooltip("Whenever Tower placement fails return the purchase back")]
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseCanceled;
+        [Tooltip("Pops a message to user")]
+        [SerializeField] private StringEventAsset _notifyUser;
         
         
         private bool _isPlacementActive;
@@ -33,7 +36,7 @@ namespace TowerDefense.Player
 
         private void OnTowerPurchaseCanceledEvent(TowerPurchaseDTO towerPurchase)
         {
-            RefundPurchase(towerPurchase);
+            _notifyUser.Invoke("Tower placement canceled");
         }
 
         private void OnTowerPurchaseSelectEvent(TowerPurchaseDTO towerPurchase)
@@ -64,9 +67,5 @@ namespace TowerDefense.Player
             }
         }
 
-        private void RefundPurchase(TowerPurchaseDTO towerPurchase)
-        {
-            //TODO refund purchase cost to wallet
-        }
     }
 }

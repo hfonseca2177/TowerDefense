@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using TowerDefense.Events;
+using TowerDefense.Game;
 using TowerDefense.Grid;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace TowerDefense.Towers
         [Header("Tower Manager - responsible for tower placement")]
         [Tooltip("Placement Grid Manager")]
         [SerializeField] private GridManager _gridManager;
+        [Tooltip("Currency manager needed for purchase transactions")]
+        [SerializeField] private WalletManager _walletManager;
         [Tooltip("Tower Definitions list")]
         [SerializeField] private TowerDefinition[] _towerDefinitions;
         [Header("Events")]
@@ -20,6 +23,7 @@ namespace TowerDefense.Towers
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchase;
         [Tooltip("Whenever Tower placement fails notifies purchase canceled")]
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseCanceledNotify;
+        
         [Tooltip("Enables debug trace")]
         [SerializeField] private bool _isDebugEnabled;
         
@@ -32,6 +36,7 @@ namespace TowerDefense.Towers
         {
             _onTowerPurchase.OnInvoked.RemoveListener(OnTowerPurchasedEvent);
         }
+
 
         private void OnTowerPurchasedEvent(TowerPurchaseDTO towerPurchase)
         {
@@ -49,6 +54,10 @@ namespace TowerDefense.Towers
             if (towerPurchase.Position.magnitude <= float.Epsilon) return;
             Vector3 snappedPosition = _gridManager.SnapToGrid(towerPurchase.Position);
             if (_gridManager.IsAlreadyAllocated(snappedPosition)) return;
+            float towerCost = TowerCostHelper.Instance.GetPurchaseCost(towerDefinition.BaseCost, WaveListener.Instance.WaveIndex,
+                towerDefinition.FlatModifier, towerDefinition.PercentageModifier);
+            bool purchased = _walletManager.PurchaseTower(towerCost);
+            if (!purchased) return;
             _gridManager.AllocateGrid(snappedPosition);
             Instantiate(towerDefinition.TowerPrefab, snappedPosition, Quaternion.identity);
             if(_isDebugEnabled) Debug.Log($"SnapTo: {snappedPosition}");
