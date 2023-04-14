@@ -46,7 +46,7 @@
 
 - **Grid System** - I could have use Tile Map grid system for example as base but I wanted to do a slim version but still expandable 
 - **Navmesh** - PoC navmesh - tested possibility of using navmesh. I wanted to give it a try to see if the movement would be more organic. Also try not to reinvent the wheel. 
-I checked what pathfinding algorithm Unity uses, which is the A* (star) , the one that is most commonly used and have better performance I felt like some pathfinding algorithms can cause a too straight route. Thats the case like in the game Fieldrunners is too mechanical and flat movement.
+I checked what pathfinding algorithm Unity uses, which is the A* (star) , the one that is most commonly used and have fair performance I felt like some pathfinding algorithms can cause a too straight route. Thats the case like in the game Fieldrunners is too mechanical and flat movement.
  Although it was a quick implementation. If not balanced or the spawning is too intense, they can start getting stuck on each other if not killed faster enough. A grid shaped navmesh  baked could be used to improve the behavior. 
 The Navmesh still can be used for Air unity.
 - **Balance** - Created a spreadsheet to simulate some data about the waves, enemys, score, Towers - the system will consist a summon cost per wave that will be fulfilled by summoning random enemies with specific costs and implement a exponential progression (Growth) https://docs.google.com/spreadsheets/d/1nr-SldvAJsId-6262lTEuEvSknqsuxypzJ87Age02sg/edit?usp=sharing
@@ -69,9 +69,7 @@ New Input system - mouse event doesn't trigger on Editor:  Disable “Simulate T
 
 Here some references that I used to implement the game. 
 
-- Wave System https://www.youtube.com/watch?v=7T-MTo8Uaio
 - Growth Formula: https://www.cuemath.com/exponential-growth-formula/
 - Unity NavMesh: https://docs.unity3d.com/550/Documentation/Manual/nav-InnerWorkings.html
-- Adressables: https://www.youtube.com/watch?v=KJbNsaj1c1o
-- AStar Pathfinding implementation with jobs and bust compiler: https://www.youtube.com/watch?v=OlIJCKJtk8o
+- AStar Pathfinding implementation with jobs and burst compiler: https://www.youtube.com/watch?v=OlIJCKJtk8o
 
