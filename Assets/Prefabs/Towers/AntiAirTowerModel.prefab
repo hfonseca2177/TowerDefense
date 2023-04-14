@@ -165,8 +165,9 @@ MonoBehaviour:
   _detectionCap: 1
   _fireSfx: {fileID: 203560926435139826}
   _shootingEffect: {fileID: 9223369942582835080}
-  _projectile: {fileID: 3715012011911395534, guid: f316885f1d78eba4c96c2b4b5f5a5b1d, type: 3}
   _shootingSpot: {fileID: 3347425284471768288}
+  _projectilePoolingReference: {fileID: 11400000, guid: 8ee0ce85d04670c478ca676fb76a5f78, type: 2}
+  _onProjectileRelease: {fileID: 11400000, guid: 5343f7a33e17eaa4d8551ab23913da6a, type: 2}
 --- !u!82 &203560926435139826
 AudioSource:
   m_ObjectHideFlags: 0

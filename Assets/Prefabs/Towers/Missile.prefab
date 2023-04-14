@@ -110,10 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _rotateSpeed: 5
   _damage: 1
   _lifeTime: 3
   _destroyOnImpact: 1
+  _onProjectileReleaseNotify: {fileID: 11400000, guid: 5343f7a33e17eaa4d8551ab23913da6a, type: 2}
 --- !u!54 &3404572334139034588
 Rigidbody:
   m_ObjectHideFlags: 0

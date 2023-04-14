@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using TowerDefense.Enemies;
+using TowerDefense.Events;
 using UnityEngine;
 
 namespace TowerDefense.Towers
@@ -11,20 +12,15 @@ namespace TowerDefense.Towers
     {
         [Header("Projectile settings")] 
         [SerializeField] protected float _speed = 15f;
-        [Header("Projectile settings")] 
-        [SerializeField] protected float _rotateSpeed = 150f;
+        [Header("Projectile settings")]
         [SerializeField] protected float _damage = 1f;
-    
         [SerializeField, Tooltip("Time before the projectile is destroyed")]
         protected float _lifeTime = 3f;
-
         [SerializeField, Tooltip("If should remain until life timeout after any impact")]
         protected bool _destroyOnImpact;
+        [SerializeField] private GameObjectEventAsset _onProjectileReleaseNotify;
         
-        private Vector3 _standardPrediction, _deviatedPrediction;
-
-        private Rigidbody _rigidBody;
-
+        
         //accumulates the amount of time spawned
         private float _spawnTime;
 
@@ -32,11 +28,6 @@ namespace TowerDefense.Towers
         private bool _launched;
 
         private Enemy _target;
-
-        private void Awake()
-        {
-            _rigidBody = GetComponent<Rigidbody>();
-        }
 
         private void Update()
         {
@@ -51,12 +42,10 @@ namespace TowerDefense.Towers
         }
 
         //Starts projectile physics
-        public void Fire(float damage, float speed, Enemy target)
+        public void Fire(float damage, Enemy target)
         {
             _target = target;
             _damage = damage;
-            //_speed = speed;
-            
             _launched = true;
         }
 
@@ -73,7 +62,6 @@ namespace TowerDefense.Towers
             position += direction * _speed * Time.deltaTime;
             projectileTransform.position = position;
         }
-     
 
         //case projectile collider are used as trigger
         private void OnTriggerEnter(Collider other)
@@ -102,7 +90,9 @@ namespace TowerDefense.Towers
         IEnumerator DestroyProjectile()
         {
             yield return null;
-            Destroy(gameObject);
+            _launched = false;
+            _spawnTime = 0;
+            _onProjectileReleaseNotify.Invoke(gameObject);
         }
     }
 }

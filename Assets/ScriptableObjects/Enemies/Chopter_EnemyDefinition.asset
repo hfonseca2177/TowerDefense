@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bb139497414581a20b737152806d9e, type: 3}
   m_Name: Chopter_EnemyDefinition
   m_EditorClassIdentifier: 
-  BaselineHitPoint: 2
-  BaselineSpeed: 3
-  BaseLineDamage: 1
+  HitPoints: {fileID: 11400000, guid: c497d781add3fec4698affea5d07aee9, type: 2}
+  Speed: {fileID: 11400000, guid: 5f69e8a7953f700439daee3319e937d8, type: 2}
+  Damage: {fileID: 11400000, guid: bfa0ee85be9dcd242a0e31e880670458, type: 2}
   SpawnCost: 8
   Score: 5
   SpawnRequestTrigger: {fileID: 11400000, guid: 5342dec68d063c544b772da56bce574c, type: 2}

@@ -128,6 +128,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9134196651070062435}
     - target: {fileID: 7718109939286171900, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
+      propertyPath: _onNewWave
+      value: 
+      objectReference: {fileID: 11400000, guid: 20f9dafdcbdfd65408fec081088ed454, type: 2}
+    - target: {fileID: 7718109939286171900, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
       propertyPath: _onEnemyRelease
       value: 
       objectReference: {fileID: 11400000, guid: c47e8e324461b4847876928e5816794f, type: 2}
@@ -135,6 +139,14 @@ PrefabInstance:
       propertyPath: _onSpawnRequest
       value: 
       objectReference: {fileID: 11400000, guid: 3003713f5d0df1d46a3a2894f0de3edd, type: 2}
+    - target: {fileID: 7718109939286171900, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
+      propertyPath: _enemyDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d22b97d5c717e14e9d1e0ae681bafea, type: 2}
+    - target: {fileID: 7718109939286171900, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
+      propertyPath: _enemyLevelReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 211c88cd68dca16408d697d303b039c9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2311acef3bc057c4ab308a0b7d82f4a6, type: 3}
 --- !u!4 &8797262469358383522 stripped

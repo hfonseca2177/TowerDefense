@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bb139497414581a20b737152806d9e, type: 3}
   m_Name: Infantary_EnemyDefinition
   m_EditorClassIdentifier: 
-  BaselineHitPoint: 1
-  BaselineSpeed: 3
-  BaseLineDamage: 1
+  HitPoints: {fileID: 11400000, guid: af58cd7b8d678f4408d7164fcb9c84ea, type: 2}
+  Speed: {fileID: 11400000, guid: c0910ecea883545498bcde1e990c1bf9, type: 2}
+  Damage: {fileID: 11400000, guid: 0cd56902a4ee32641bbad23fbc9f3514, type: 2}
   SpawnCost: 3
   Score: 1
   SpawnRequestTrigger: {fileID: 11400000, guid: 3003713f5d0df1d46a3a2894f0de3edd, type: 2}

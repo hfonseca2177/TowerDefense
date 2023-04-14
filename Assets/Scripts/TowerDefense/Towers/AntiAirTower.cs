@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using TowerDefense.Enemies;
+using TowerDefense.Events;
+using TowerDefense.Util;
 using UnityEngine;
 
 namespace TowerDefense.Towers
@@ -10,11 +12,35 @@ namespace TowerDefense.Towers
     public class AntiAirTower : BaseTower
     {
         [SerializeField] private GameObject _shootingEffect;
-        [SerializeField] private Projectile _projectile;
         [SerializeField] private Transform _shootingSpot;
+        [SerializeField] private ObjectPoolingReference _projectilePoolingReference;
+        [SerializeField] private GameObjectEventAsset _onProjectileRelease;
+
+        private ObjectPooling _projectilePool; 
         
-        private float _elapsedTime; 
-        
+        private float _elapsedTime;
+
+        protected override void Start()
+        {
+            base.Start();
+            _projectilePool = _projectilePoolingReference.Pool;
+        }
+
+        private void OnEnable()
+        {
+            _onProjectileRelease.OnInvoked.AddListener(OnProjectileReleaseEvent);
+        }
+
+        private void OnDisable()
+        {
+            _onProjectileRelease.OnInvoked.RemoveListener(OnProjectileReleaseEvent);
+        }
+
+        private void OnProjectileReleaseEvent(GameObject projectile)
+        {
+            _projectilePool.Release(projectile);
+        }
+
         private void FixedUpdate()
         {
             if (_onCooldown)
@@ -54,10 +80,17 @@ namespace TowerDefense.Towers
             _onCooldown = true;
             PlayFireSfx();
             _shootingEffect.SetActive(true);
-            var missile = Instantiate(_projectile, _shootingSpot.position, _shootingSpot.rotation, transform);
-            missile.Fire(_damage.CurrentValue, _speed.CurrentValue, _target);
-            if(!_target.IsAlive) _targetLocked = false;
-            StartCoroutine(StopFire());
+            var missileObj = _projectilePool.Get();
+            if(missileObj.TryGetComponent(out Projectile missile))
+            {
+                var missileTransform = missileObj.transform;
+                missileTransform.position = _shootingSpot.position;
+                missileTransform.rotation = _shootingSpot.rotation;
+                missile.Fire(_damage.CurrentValue, _target);
+                missileObj.SetActive(true);
+                if(!_target.IsAlive) _targetLocked = false;
+                StartCoroutine(StopFire());
+            }
         }
 
         private IEnumerator StopFire()

@@ -1,4 +1,5 @@
 using TowerDefense.Events;
+using TowerDefense.Util;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,8 @@ namespace TowerDefense.Enemies
     {
         [Tooltip("Reference to player base as target")]
         [SerializeField] private TargetReference _targetReference;
+        [Tooltip("Reference to current enemy stats scale")]
+        [SerializeField] private EnemyLevelReference _levelReference;
         [Tooltip("Enemy Base Stats")]
         [SerializeField] private EnemyDefinition _enemyDefinition;
         [Header("Events")]
@@ -21,24 +24,34 @@ namespace TowerDefense.Enemies
         [Tooltip("Whenever enemy takes damage")] 
         [SerializeField] private FloatEventAsset _onEnemyDamageTakenNotify;
 
+        private float _damage;
+        public float _hitPoints;
+        private float _speed;
+      
         public bool IsAlive
         {
-            get { return _currentHp > 0; }
+            get { return _hitPoints > 0; }
         }
 
         private NavMeshAgent _agent;
-        private float _currentDamage;
-        private float _currentHp;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
-            _currentDamage = _enemyDefinition.BaseLineDamage;
         }
 
         private void OnEnable()
         {
+            LoadStats();
             Move();
+        }
+
+        private void LoadStats()
+        {
+            _damage = _levelReference.Damage.CurrentValue;
+            _hitPoints = _levelReference.HitPoints.CurrentValue;
+            _speed = _levelReference.Speed.CurrentValue;
+            _agent.speed = _speed;
         }
 
         private void Move()
@@ -49,14 +62,14 @@ namespace TowerDefense.Enemies
         public float HitPlayer()
         {
             _onReleaseEnemyNotify.Invoke(this.gameObject);
-            return _currentDamage;
+            return _damage;
         }
 
         public void TakeDamage(float damage)
         {
-            _currentHp -= damage;
+            _hitPoints -= damage;
             _onEnemyDamageTakenNotify.Invoke(damage);
-            if (_currentHp > 0) return;
+            if (_hitPoints > 0) return;
             _onEnemyDeathNotify.Invoke(_enemyDefinition.Score);
             _onReleaseEnemyNotify.Invoke(this.gameObject);
         }

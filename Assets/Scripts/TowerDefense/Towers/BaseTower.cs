@@ -28,7 +28,7 @@ namespace TowerDefense.Towers
         protected bool _onCooldown;
         protected WaitForSeconds _fireDelay;
 
-        private void Start()
+        protected virtual void Start()
         {
             LoadAttributes();
         }

@@ -160,6 +160,7 @@ namespace TowerDefense.Game
         private void OnGameOverEvent()
         {
             SaveData();
+            _sceneLoader.LoadSummary();
         }
 
         private void LoadData()
