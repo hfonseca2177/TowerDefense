@@ -10,6 +10,8 @@ namespace TowerDefense.Game
     {
         [Tooltip("Wallet configuration")]
         [SerializeField, Expandable] private WalletSettings _settings;
+        [Tooltip("Serialized reference to this manager - alternative to singleton")] 
+        [SerializeField] private WalletReference _walletReference; 
         [Tooltip("Notifies a new score awarded")] 
         [SerializeField] private FloatEventAsset _onNewScoreAwardedNotify;
         [Tooltip("Notifies a new successful purchase")] 
@@ -23,6 +25,7 @@ namespace TowerDefense.Game
 
         private void Start()
         {
+            _walletReference.Wallet = this;
             _currentCurrency = _settings.InitialBudget;
             _onCurrencyUpdateNotify.Invoke(_currentCurrency);
         }
@@ -65,7 +68,8 @@ namespace TowerDefense.Game
 
         private bool TryPurchase(float cost)
         {
-            bool hasFunds = _currentCurrency > cost;
+            cost = Mathf.FloorToInt(cost);
+            bool hasFunds = _currentCurrency >= cost;
             if (hasFunds)
             {
                 _currentCurrency -= cost;

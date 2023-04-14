@@ -75,6 +75,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _towerDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 46096897b63217f47818cbbca8bd71be, type: 2}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1140867191935484138}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUpgradeEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TowerDefense.Towers.BaseTower, TowersAD
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1955906631, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

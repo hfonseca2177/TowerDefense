@@ -7,6 +7,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _towerDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 24dc132fcb4d7b542bed111ca1027a4e, type: 2}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 388004461105113019}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUpgradeEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TowerDefense.Towers.QuickShotTower, TowersAD
+      objectReference: {fileID: 0}
+    - target: {fileID: 687620109, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
+      propertyPath: _onUpgradeTowerTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 783416911, guid: 12e0fa4bf246a174093d84042740d6d4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -127,3 +159,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36aed329563fe6246bd1d50fa130d747, type: 3}
+--- !u!114 &388004461105113019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5879876074899532220, guid: 36aed329563fe6246bd1d50fa130d747, type: 3}
+  m_PrefabInstance: {fileID: 6123765347554921991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fc28d7bf35f934791dc16483db5928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

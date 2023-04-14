@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: a73bc98640598894986202c8aefb9516, type: 2}
+  _walletReference: {fileID: 11400000, guid: aa850358d77fef245b46847b56307603, type: 2}
   _onNewScoreAwardedNotify: {fileID: 11400000, guid: 45c7731c253853e4caf08e67c9585443, type: 2}
   _onPurchaseSpentNotify: {fileID: 11400000, guid: 03d947a89f0c7c74bbbad7e9364d0180, type: 2}
   _onUpgradeSpentNotify: {fileID: 11400000, guid: dba2ff0a155b82948870c87eb2804acd, type: 2}
