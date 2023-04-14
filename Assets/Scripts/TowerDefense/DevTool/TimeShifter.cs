@@ -21,7 +21,7 @@ namespace TowerDefense.DevTool
             }
             else if (Input.GetKey(KeyCode.Keypad0))
             {
-                Time.timeScale = 0;
+                Time.timeScale = 1;
             }
         }
     }

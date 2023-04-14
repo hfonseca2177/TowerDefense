@@ -1,5 +1,7 @@
 ﻿using TowerDefense.Events;
+using TowerDefense.Util;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TowerDefense.Game
 {
@@ -17,6 +19,8 @@ namespace TowerDefense.Game
         [SerializeField, Expandable] private ScoreSettings _newStageScore;
         [Tooltip("Score based on time elapsed for the run")]
         [SerializeField, Expandable] private ScoreSettings _timeScore;
+        [Tooltip("Load game scenes")]
+        [SerializeField] private SceneLoader _sceneLoader;
         
         
         [Header("Events")]
@@ -180,6 +184,12 @@ namespace TowerDefense.Game
         private float GetElapsedTime()
         {
             return Time.time - _startTime;
+        }
+
+        public void SkipToSummary()
+        {
+            SaveData();
+            _sceneLoader.LoadSummary();
         }
     }
 }

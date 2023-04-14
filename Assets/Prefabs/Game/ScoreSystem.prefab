@@ -48,6 +48,7 @@ MonoBehaviour:
   _finishWaveScore: {fileID: 11400000, guid: 7d2d50d9393c0b644a6ca6f841d8d8e6, type: 2}
   _newStageScore: {fileID: 11400000, guid: dadcb2b4e603c8a49b7fd71db2bcc2fd, type: 2}
   _timeScore: {fileID: 11400000, guid: 0ff088bc756c38947923b66a0ec4e1bd, type: 2}
+  _sceneLoader: {fileID: 4982732147077669891, guid: 4637684c3bb406b4991c4ca94ff63be7, type: 3}
   _onScoreUpdateNotify: {fileID: 11400000, guid: 5f116720fb36223439a51b90936799b9, type: 2}
   _onNewScoreAwardedNotify: {fileID: 11400000, guid: 45c7731c253853e4caf08e67c9585443, type: 2}
   _onGameStart: {fileID: 11400000, guid: c9130120a480b0b44a4792c1536aa6c8, type: 2}

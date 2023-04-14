@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameScore_FileSerializationDefinition
   m_EditorClassIdentifier: 
   DirectoryName: data
-  FileName: file
+  FileName: game_score
   FileExtension: .data
   VersionDirectoryName: dataVersion
   UseVersioning: 0
