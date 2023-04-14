@@ -1,0 +1,20 @@
+{
+    "name": "UserInterfaceAD",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:bfb9cba968f61d44c8393111d7446340",
+        "GUID:966f003d4b205b64ba5297716332ba2f",
+        "GUID:5a254b0e3a03b6449981934de38c14a3",
+        "GUID:35ccaf00ba20c8e4a97e4e754cb1bb52"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

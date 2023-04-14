@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bb139497414581a20b737152806d9e, type: 3}
+  m_Name: Goliath_EnemyDefinition
+  m_EditorClassIdentifier: 
+  HitPoints: {fileID: 11400000, guid: ee26805bf147ed241b0c482b77aa4b75, type: 2}
+  Speed: {fileID: 11400000, guid: 189585bec73a19549b73a81c3dec8fbf, type: 2}
+  Damage: {fileID: 11400000, guid: 2950818dacfa66741807572f289a830b, type: 2}
+  SpawnCost: 5
+  Score: 3
+  SpawnRequestTrigger: {fileID: 11400000, guid: f51c865b13e5af543bd863d025c95620, type: 2}
