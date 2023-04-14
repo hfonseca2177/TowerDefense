@@ -33,7 +33,7 @@ namespace TowerDefense.UI
 
         private void OnNewWaveEvent(int waveIndex)
         {
-            var waveStr = waveIndex.ToString();
+            var waveStr = (waveIndex + 1).ToString();
             _waveNumber.text = waveStr;
             _waveAnnouncerNumber.text = waveStr;
             _waveAnnouncer.SetActive(true);

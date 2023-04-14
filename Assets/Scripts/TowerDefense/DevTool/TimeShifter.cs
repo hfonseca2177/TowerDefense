@@ -16,7 +16,8 @@ namespace TowerDefense.DevTool
             }
             else if (Input.GetKey(KeyCode.KeypadMinus))
             {
-                Time.timeScale -= _timeShiftRate;
+                var newScale = Time.timeScale - _timeShiftRate;
+                Time.timeScale = Mathf.Clamp(newScale,0, newScale);
             }
             else if (Input.GetKey(KeyCode.Keypad0))
             {

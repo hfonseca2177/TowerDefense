@@ -10,13 +10,13 @@ namespace TowerDefense.Game
     {
         [Header("Settings")] 
         [Tooltip("Score when player kills enemy")]
-        [SerializeField] private ScoreSettings _enemyKillScore; 
+        [SerializeField, Expandable] private ScoreSettings _enemyKillScore; 
         [Tooltip("Score when player finishes a wave")]
-        [SerializeField] private ScoreSettings _finishWaveScore;
+        [SerializeField, Expandable] private ScoreSettings _finishWaveScore;
         [Tooltip("Score when player reaches anew stage")]
-        [SerializeField] private ScoreSettings _newStageScore;
+        [SerializeField, Expandable] private ScoreSettings _newStageScore;
         [Tooltip("Score based on time elapsed for the run")]
-        [SerializeField] private ScoreSettings _timeScore;
+        [SerializeField, Expandable] private ScoreSettings _timeScore;
         
         
         [Header("Events")]

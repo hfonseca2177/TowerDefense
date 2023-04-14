@@ -9,8 +9,9 @@ namespace TowerDefense.Game
     /// </summary>
     public class GameManager : MonoBehaviour
     {
+        [Tooltip("Player base where the enemies will be targeting and moving into")]
         [SerializeField] private Transform _playerBase;
-        
+        [Tooltip("Serialized reference to Player Base")]
         [SerializeField] private TargetReference _targetReference;
         [Tooltip("Delay before start first wave")]
         [SerializeField] private float _delayToStartWaves;
@@ -30,6 +31,7 @@ namespace TowerDefense.Game
          
         private void Awake()
         {
+            //assign the player base to the SO, therefore the enemies get a easy reference to the player base 
             _targetReference.Target = _playerBase;
         }
 

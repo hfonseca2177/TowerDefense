@@ -12,11 +12,11 @@ namespace TowerDefense.Towers
         public string Name;
         public Color ThemeColor;
         public GameObject TowerPrefab;
-        public AttributeDefinition Damage;
-        public AttributeDefinition Speed;
-        public AttributeDefinition Range;
-        public AttributeDefinition Special;
-        public AttributeDefinition[] OtherAttributes;
+        [Expandable] public AttributeDefinition Damage;
+        [Expandable] public AttributeDefinition Speed;
+        [Expandable] public AttributeDefinition Range;
+        [Expandable] public AttributeDefinition Special;
+        [Expandable] public AttributeDefinition[] OtherAttributes;
         public float BaseCost;
         public float FlatModifier;
         public float PercentageModifier;

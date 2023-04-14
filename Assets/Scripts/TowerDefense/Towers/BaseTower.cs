@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TowerDefense.Enemies;
 using UnityEngine;
 
 namespace TowerDefense.Towers
@@ -9,9 +10,10 @@ namespace TowerDefense.Towers
     /// </summary>
     public abstract class BaseTower : MonoBehaviour
     {
-        [SerializeField] protected TowerDefinition _towerDefinition;
+        [SerializeField, Expandable] protected TowerDefinition _towerDefinition;
         [SerializeField] protected LayerMask _detectionLayer;
         [SerializeField] protected int _detectionCap;
+        [SerializeField] protected AudioSource _fireSfx;
         
         //common attributes separated to have more quick access in the specialization classes
         protected TowerAttributesDTO _damage;
@@ -19,6 +21,12 @@ namespace TowerDefense.Towers
         protected TowerAttributesDTO _range;
         protected TowerAttributesDTO _special;
         protected Dictionary<string, TowerAttributesDTO> _otherAttributes;
+        
+        //activation and target variables
+        protected bool _targetLocked;
+        protected Enemy _target;
+        protected bool _onCooldown;
+        protected WaitForSeconds _fireDelay;
 
         private void Start()
         {
@@ -39,6 +47,7 @@ namespace TowerDefense.Towers
                 TowerAttributesDTO attributesDto = new TowerAttributesDTO(definition);
                 _otherAttributes.Add(definition.StatName, attributesDto);
             }
+            _fireDelay = new WaitForSeconds(_speed.CurrentValue);
         }
         
         //Called when upgrade button is activated
@@ -54,6 +63,21 @@ namespace TowerDefense.Towers
                 towerAttributesDto.Value.LevelUp();
             }
         }
+
+        protected void PlayFireSfx()
+        {
+            _fireSfx.Play();
+        }
+
+        protected void LookTarget()
+        {
+            var towerTransform = transform;
+            var targetTransform = _target.transform;
+            var position = targetTransform.position;
+            var targetPosition = new Vector3(position.x, 0, position.z );
+            towerTransform.LookAt(targetPosition);
+        }
+
         
         
     }

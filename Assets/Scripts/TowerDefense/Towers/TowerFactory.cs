@@ -23,7 +23,8 @@ namespace TowerDefense.Towers
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchase;
         [Tooltip("Whenever Tower placement fails notifies purchase canceled")]
         [SerializeField] private TowerPurchaseEventAsset _onTowerPurchaseCanceledNotify;
-        
+        [Tooltip("Pops a message to user")]
+        [SerializeField] private StringEventAsset _notifyUser;
         [Tooltip("Enables debug trace")]
         [SerializeField] private bool _isDebugEnabled;
         
@@ -57,7 +58,11 @@ namespace TowerDefense.Towers
             float towerCost = TowerCostHelper.Instance.GetPurchaseCost(towerDefinition.BaseCost, WaveListener.Instance.WaveIndex,
                 towerDefinition.FlatModifier, towerDefinition.PercentageModifier);
             bool purchased = _walletManager.PurchaseTower(towerCost);
-            if (!purchased) return;
+            if (!purchased)
+            {
+                _notifyUser.Invoke("No funds");
+                return;
+            }
             _gridManager.AllocateGrid(snappedPosition);
             Instantiate(towerDefinition.TowerPrefab, snappedPosition, Quaternion.identity);
             if(_isDebugEnabled) Debug.Log($"SnapTo: {snappedPosition}");

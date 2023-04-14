@@ -37,7 +37,6 @@ namespace TowerDefense.Enemies
         public int GetWaveIntensifierFactor(int waveIndex)
         {
             int waveIndexInStage = GetStageWaveIndex(waveIndex);
-            Debug.Log(waveIndexInStage);
             return  _fibonacciSequence[waveIndexInStage];
         }
 

@@ -16,3 +16,11 @@ MonoBehaviour:
   Name: Flame Tower
   ThemeColor: {r: 0.9528302, g: 0.7708697, b: 0.29214135, a: 1}
   TowerPrefab: {fileID: 1340638989684608219, guid: a061b42b910b07a4d9091ec17b6421a3, type: 3}
+  Damage: {fileID: 11400000, guid: 3529a9d9d8d24724aa4b5b269401ad56, type: 2}
+  Speed: {fileID: 11400000, guid: 0f130dfaa62d02f4c829747a57883dc7, type: 2}
+  Range: {fileID: 11400000, guid: 8a777d7bbb3652a4e9e4aa8c482bf2e3, type: 2}
+  Special: {fileID: 11400000, guid: 44ba4facf5ac72f4684fd77abd20dd26, type: 2}
+  OtherAttributes: []
+  BaseCost: 70
+  FlatModifier: 0
+  PercentageModifier: 0.05

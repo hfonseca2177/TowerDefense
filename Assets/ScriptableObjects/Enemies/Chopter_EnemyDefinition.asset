@@ -16,4 +16,5 @@ MonoBehaviour:
   BaselineSpeed: 3
   BaseLineDamage: 1
   SpawnCost: 8
+  Score: 5
   SpawnRequestTrigger: {fileID: 11400000, guid: 5342dec68d063c544b772da56bce574c, type: 2}

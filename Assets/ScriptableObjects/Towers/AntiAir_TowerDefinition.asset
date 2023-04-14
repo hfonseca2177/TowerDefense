@@ -16,3 +16,11 @@ MonoBehaviour:
   Name: Anti-Air Tower
   ThemeColor: {r: 0.27313438, g: 0.754717, b: 0.20291919, a: 1}
   TowerPrefab: {fileID: 3788922157409225330, guid: 90e4a9943b841f847850feb921e612ea, type: 3}
+  Damage: {fileID: 11400000, guid: 3cba1cd37cb6f294881de43265a8d2f5, type: 2}
+  Speed: {fileID: 11400000, guid: 9b6eb64260ee71144ac84103ec959efa, type: 2}
+  Range: {fileID: 11400000, guid: bdfeddabfc5700e4a8223ea4d2d9feae, type: 2}
+  Special: {fileID: 11400000, guid: 744051f502a7b454ca3d29f963280df5, type: 2}
+  OtherAttributes: []
+  BaseCost: 90
+  FlatModifier: 0
+  PercentageModifier: 0.05

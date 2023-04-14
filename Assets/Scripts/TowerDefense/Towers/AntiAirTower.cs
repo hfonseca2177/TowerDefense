@@ -4,18 +4,17 @@ using UnityEngine;
 
 namespace TowerDefense.Towers
 {
+    /// <summary>
+    /// Tower that target and fires homing missiles
+    /// </summary>
     public class AntiAirTower : BaseTower
     {
         [SerializeField] private GameObject _shootingEffect;
-        [SerializeField] private float _turnSpeed;
         [SerializeField] private Projectile _projectile;
         [SerializeField] private Transform _shootingSpot;
         
-        private bool _targetLocked;
-        private Enemy _target;
-        private Rigidbody _rigidbody;
         private float _elapsedTime; 
-        private bool _onCooldown;
+        
         private void FixedUpdate()
         {
             if (_onCooldown)
@@ -28,9 +27,8 @@ namespace TowerDefense.Towers
             {
                 if (_targetLocked)
                 {
-                    var direction = _target.transform.position - transform.position;
-                    LookTarget(direction);
-                    Fire();    
+                    LookTarget();
+                    Fire();
                 }
                 else
                 {
@@ -50,30 +48,21 @@ namespace TowerDefense.Towers
                 _target = enemy;
             }
         }
-
-        private void LookTarget(Vector3 direction)
-        {
-            if (direction.magnitude > float.Epsilon) return;
-            var lookDirection = new Vector3(direction.x, 0f, direction.z).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, _turnSpeed  * Time.deltaTime);
-            _rigidbody.MoveRotation(rotation);
-        }
         
         private void Fire()
         {
             _onCooldown = true;
+            PlayFireSfx();
             _shootingEffect.SetActive(true);
             var missile = Instantiate(_projectile, _shootingSpot.position, _shootingSpot.rotation, transform);
-            
-            if (_target.IsAlive) return;
-            _targetLocked = false;
+            missile.Fire(_damage.CurrentValue, _speed.CurrentValue, _target);
+            if(!_target.IsAlive) _targetLocked = false;
             StartCoroutine(StopFire());
         }
 
         private IEnumerator StopFire()
-        {
-            yield return new WaitForFixedUpdate();
+        {  
+            yield return _fireDelay;
             _shootingEffect.SetActive(false);
         }
     }

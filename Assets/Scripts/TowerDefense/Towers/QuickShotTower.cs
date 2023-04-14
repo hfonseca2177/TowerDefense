@@ -10,13 +10,9 @@ namespace TowerDefense.Towers
     public class QuickShotTower : BaseTower
     {
         [SerializeField] private GameObject _shootingEffect;
-        [SerializeField] private float _turnSpeed;
-        
-        private bool _targetLocked;
-        private Enemy _target;
         private Rigidbody _rigidbody;
         private float _elapsedTime; 
-        private bool _onCooldown;
+        
         private int _multiBullet = 1;
         private void FixedUpdate()
         {
@@ -30,9 +26,8 @@ namespace TowerDefense.Towers
             {
                 if (_targetLocked)
                 {
-                    var direction = _target.transform.position - transform.position;
-                    LookTarget(direction);
-                    Fire();    
+                    LookTarget();
+                    Fire();
                 }
                 else
                 {
@@ -56,8 +51,8 @@ namespace TowerDefense.Towers
         private void AdjustMultiBullet()
         {
             if (!_special.IsUnlocked) return;
-            var piercing = (int) _special.CurrentValue;
-            _multiBullet = Mathf.Clamp(piercing, 1, piercing);
+            var multiShots = (int) _special.CurrentValue;
+            _multiBullet = Mathf.Clamp(multiShots, 1, multiShots);
         }
 
         private void AcquireTarget()
@@ -71,20 +66,12 @@ namespace TowerDefense.Towers
                 _target = enemy;
             }
         }
-
-        private void LookTarget(Vector3 direction)
-        {
-            if (direction.magnitude > float.Epsilon) return;
-            var lookDirection = new Vector3(direction.x, 0f, direction.z).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, _turnSpeed  * Time.deltaTime);
-            _rigidbody.MoveRotation(rotation);
-        }
         
         private void Fire()
         {
             _onCooldown = true;
             _shootingEffect.SetActive(true);
+            PlayFireSfx();
             for (int i = 0; i < _multiBullet; i++)
             {
                 _target.TakeDamage(_damage.CurrentValue);

@@ -19,10 +19,7 @@ namespace TowerDefense.Grid
         [SerializeField] private int _gridHeight = 20;
         [SerializeField] private Transform _startingPosition;
         
-        /*[SerializeField] private VoidEventAsset _onSelectFo4rPlacement;
-        [SerializeField] private VoidEventAsset _onCancelPlacement;*/
-        
-        private GridCell[,] _grid;
+        public GridCell[,] _grid;
         private Hashtable _gridAllocations;
         private int _gridRows = 12; // z changes
         private int _gridCols = 24; // x changes

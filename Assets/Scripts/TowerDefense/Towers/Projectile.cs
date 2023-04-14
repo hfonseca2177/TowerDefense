@@ -10,15 +10,18 @@ namespace TowerDefense.Towers
     public class Projectile : MonoBehaviour
     {
         [Header("Projectile settings")] 
-        [SerializeField] protected float _speed = 2f;
-
+        [SerializeField] protected float _speed = 15f;
+        [Header("Projectile settings")] 
+        [SerializeField] protected float _rotateSpeed = 150f;
         [SerializeField] protected float _damage = 1f;
-
+    
         [SerializeField, Tooltip("Time before the projectile is destroyed")]
         protected float _lifeTime = 3f;
 
         [SerializeField, Tooltip("If should remain until life timeout after any impact")]
         protected bool _destroyOnImpact;
+        
+        private Vector3 _standardPrediction, _deviatedPrediction;
 
         private Rigidbody _rigidBody;
 
@@ -27,6 +30,8 @@ namespace TowerDefense.Towers
 
         //used to control the realtime when it was actually launched and not instantiated
         private bool _launched;
+
+        private Enemy _target;
 
         private void Awake()
         {
@@ -46,13 +51,29 @@ namespace TowerDefense.Towers
         }
 
         //Starts projectile physics
-        public void Fire(float damage, float speed)
+        public void Fire(float damage, float speed, Enemy target)
         {
+            _target = target;
             _damage = damage;
-            _speed = speed;
-            _rigidBody.velocity = transform.forward * _speed;
+            //_speed = speed;
+            
             _launched = true;
         }
+
+        private void FixedUpdate()
+        {
+            if (!_launched) return;
+            var projectileTransform = transform;
+            var targetPosition = _target.transform.position;
+            var position = projectileTransform.position;
+            var missilePosition = position;
+            projectileTransform.LookAt(targetPosition);
+            var direction = (targetPosition - missilePosition);
+            direction.Normalize();
+            position += direction * _speed * Time.deltaTime;
+            projectileTransform.position = position;
+        }
+     
 
         //case projectile collider are used as trigger
         private void OnTriggerEnter(Collider other)

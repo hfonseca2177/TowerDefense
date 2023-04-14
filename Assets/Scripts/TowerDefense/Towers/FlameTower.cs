@@ -13,10 +13,9 @@ namespace TowerDefense.Towers
         [Tooltip("Visual representation of the effect")]
         [SerializeField] private GameObject _areaEffect;
         private bool _isFiring;
-        private bool _onCooldown;
         private float _elapsedTime;
-        private float _snare = 0;
-
+        private float _snare;
+        
         private void FixedUpdate()
         {
             if (_isFiring) return;
@@ -28,24 +27,23 @@ namespace TowerDefense.Towers
             }
             else
             {
-                DetectAndFireEnemy();    
+                DetectAndFireEnemy();
             }
         }
-        
         
         protected override void LoadAttributes()
         {
             base.LoadAttributes();
-            AdjustSnareEffect();
+            AdjustEffects();
         }
 
         public override void OnUpgradeEvent()
         {
             base.OnUpgradeEvent();
-            AdjustSnareEffect();
+            AdjustEffects();
         }
 
-        private void AdjustSnareEffect()
+        private void AdjustEffects()
         {
             if (!_special.IsUnlocked) return;
             _snare = _special.CurrentValue;
@@ -55,7 +53,6 @@ namespace TowerDefense.Towers
         //if enemy is within range, no need to do projectile or other collision
         private void DetectAndFireEnemy()
         {
-            _isFiring = true;
             Collider[] hits = new Collider[_detectionCap];
             var size = Physics.OverlapSphereNonAlloc(gameObject.transform.position, _range.CurrentValue, hits, _detectionLayer);
             if (size <= 0) return;
@@ -76,12 +73,14 @@ namespace TowerDefense.Towers
 
         private void Fire()
         {
+            _isFiring = true;
+            PlayFireSfx();
             _areaEffect.SetActive(true);
         }
 
         private IEnumerator StopFire()
         {
-            yield return null;
+            yield return _fireDelay;
             _areaEffect.SetActive(false);
             _elapsedTime = 0;
             _isFiring = false;

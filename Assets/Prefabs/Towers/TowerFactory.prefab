@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gridManager: {fileID: 0}
+  _walletManager: {fileID: 0}
   _towerDefinitions:
   - {fileID: 11400000, guid: 24dc132fcb4d7b542bed111ca1027a4e, type: 2}
   - {fileID: 11400000, guid: 1b5e41e81f1bc294a95cebe1672d0272, type: 2}
   - {fileID: 11400000, guid: 46096897b63217f47818cbbca8bd71be, type: 2}
   _onTowerPurchase: {fileID: 11400000, guid: 2863f44e11fc2004b81c019355e92341, type: 2}
   _onTowerPurchaseCanceledNotify: {fileID: 11400000, guid: 907c17235a850da46839fe1615299af8, type: 2}
+  _notifyUser: {fileID: 11400000, guid: ffc3757134d789247be49ab55fc69328, type: 2}
   _isDebugEnabled: 0

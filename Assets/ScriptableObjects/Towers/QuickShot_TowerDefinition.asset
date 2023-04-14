@@ -16,3 +16,11 @@ MonoBehaviour:
   Name: Quick Shot Tower
   ThemeColor: {r: 0.2863564, g: 0.67144555, b: 0.9339623, a: 1}
   TowerPrefab: {fileID: 1656964845674961855, guid: 1a64b57a040dd094c985a2081e5f9a2a, type: 3}
+  Damage: {fileID: 11400000, guid: 18dd32fcc6746fc44be677937bda34a3, type: 2}
+  Speed: {fileID: 11400000, guid: e18d7e7fcfc28bf4f97baec5d8e2b6aa, type: 2}
+  Range: {fileID: 11400000, guid: 13941ad3f36625f4e95770fccb18ea2a, type: 2}
+  Special: {fileID: 11400000, guid: e673331e0394c894380c67e942f6207d, type: 2}
+  OtherAttributes: []
+  BaseCost: 50
+  FlatModifier: 0
+  PercentageModifier: 0.05

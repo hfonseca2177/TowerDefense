@@ -8,7 +8,8 @@ namespace TowerDefense.Game
     /// </summary>
     public class WalletManager: MonoBehaviour
     {
-        [SerializeField] private WalletSettings _settings;
+        [Tooltip("Wallet configuration")]
+        [SerializeField, Expandable] private WalletSettings _settings;
         [Tooltip("Notifies a new score awarded")] 
         [SerializeField] private FloatEventAsset _onNewScoreAwardedNotify;
         [Tooltip("Notifies a new successful purchase")] 
@@ -23,6 +24,7 @@ namespace TowerDefense.Game
         private void Start()
         {
             _currentCurrency = _settings.InitialBudget;
+            _onCurrencyUpdateNotify.Invoke(_currentCurrency);
         }
 
         private void OnEnable()

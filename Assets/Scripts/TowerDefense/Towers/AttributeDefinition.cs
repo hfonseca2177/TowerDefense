@@ -16,6 +16,7 @@ namespace TowerDefense.Towers
         public int UnlockLevel;
         public float FlatModifier;
         public float PercentageModifier;
+        public Sprite Icon;
 
     }
 }
