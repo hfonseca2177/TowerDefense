@@ -1328,6 +1328,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 798052196}
     m_Modifications:
+    - target: {fileID: 2261314875930389944, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314875930389944, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314875980238687, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314875980238687, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314876345908311, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314876345908311, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314876808502154, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314876808502154, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314877415031256, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261314877415031256, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970079358983099084, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970079358983099084, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4970079359711408108, guid: 58ce8bed2ab207f4386571e33901f0c4, type: 3}
       propertyPath: m_Name
       value: Arena
