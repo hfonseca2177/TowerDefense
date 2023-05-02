@@ -62,10 +62,9 @@ Based on Level Upgrade, Some stats are special traits that will be unlocked on c
 ###Known issues
 
 New Input system - mouse event doesn't trigger on Editor:  Disable “Simulate Touch Input from  Mouse or Pen” on the Input Debug.
-
-
 [Issue reference](https://forum.unity.com/threads/need-help-unity-input-system-mouse-totally-not-detected-clicks-not-happening.1369047/ "Issue reference")
 
+The game is not balanced yet, I just implemented the code to support it.
 
 ## References
 
